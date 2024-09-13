@@ -1,0 +1,30 @@
+  version: '3.8' # Specify the version of Docker Compose
+
+  services:
+    dev-db:
+      image: postgres:15.3 # Use the official PostgreSQL image
+      container_name: my_postgres_container # Optional: Name your container
+      environment:
+        POSTGRES_USER: Matthew
+        POSTGRES_PASSWORD: Arowo2003
+        POSTGRES_DB: nest
+      ports:
+        - '5432:5432' # Expose PostgreSQL port to the host
+      volumes:
+        - dev_postgres_data:/var/lib/postgresql/data # Persist database data
+
+    test-db:
+      image: postgres:15.3 # Use the official PostgreSQL image
+      container_name: my_postgres_test # Optional: Name your container
+      environment:
+        POSTGRES_USER: Matthew
+        POSTGRES_PASSWORD: Arowo2003
+        POSTGRES_DB: nest
+      ports:
+        - '5433:5432' # Expose PostgreSQL port to the host
+      volumes:
+        - test_postgres_data:/var/lib/postgresql/data # Persist database data
+
+  volumes:
+    dev_postgres_data: # Volume for dev-db
+    test_postgres_data: # Volume for test-db
